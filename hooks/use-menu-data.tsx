@@ -16,7 +16,7 @@ interface MenuData {
   makiSushi: MenuItem[]
   nigiris: MenuItem[]
   sashimi: MenuItem[]
-  rollsEspeciales: MenuItem[] // Combina Rolls Gourmet y Rolls Especiales aquí
+  rollsEspeciales: MenuItem[]
   tablas: MenuItem[]
   carnes: MenuItem[]
   pescados: MenuItem[]
@@ -33,8 +33,23 @@ interface MenuData {
 // Datos iniciales del menú
 const initialMenuData: MenuData = {
   platosRecomendados: [],
-  rollsClasicos: [],
-  makiSushi: [],
+  rollsClasicos: [
+    { name: "California", description: "Kanikama, Palta, Queso Philadelphia", price: "10.000" },
+    { name: "New York", description: "Salmón y Palta", price: "11.000" },
+    { name: "New York Philadelphia", description: "Salmón, Palta y Queso Philadelphia", price: "11.000" },
+    { name: "Philadelphia", description: "Salmón y Queso Philadelphia", price: "11.000" },
+    { name: "Vegetariano", description: "Repollo Colorado, Verdeo, Palta y Queso Philadelphia", price: "9.500" },
+    { name: "Tuna", description: "Atún, Palta y Queso Philadelphia", price: "10.000" },
+    { name: "Sake", description: "Salmon Cocido, Verdeo y Queso Philadelphia", price: "11.000" },
+  ],
+  makiSushi: [
+    { name: "Maki Tuna", price: "10.000" },
+    { name: "Maki Salmon Phila", price: "11.000" },
+    { name: "Maki Salmon", price: "11.000" },
+    { name: "Maki Pejerrey", price: "11.000" },
+    { name: "Maki Sake", price: "11.000" },
+    { name: "Maki Kanikama", price: "10.000" },
+  ],
   nigiris: [
     { name: "Salmon", price: "11.000" },
     { name: "Salmon Ahumado", price: "11.000" },
@@ -45,7 +60,6 @@ const initialMenuData: MenuData = {
     { name: "Langostinos", price: "14.000" },
   ],
   rollsEspeciales: [
-    // Combina Rolls Especiales y Rolls Gourmet aquí
     { name: "Ebi Fried", description: "Langostinos, Palta y Queso Philadelphia, Rebozados y Fritos", price: "13.000" },
     { name: "Won Ton Roll", description: "Langostinos, Palta y Queso Philadelphia, Envuelto en Masa", price: "13.000" },
     {
@@ -53,6 +67,34 @@ const initialMenuData: MenuData = {
       description: "Langostinos, Palta, Queso Philadelphia, coronados con Hongos Shitake y Caviar rojo",
       price: "12.500",
     },
+    {
+      name: "Ebi Capresse",
+      description: "Langostinos, Pepino, Queso Philadelphia coronados con Queso, Tomates Cherry y Albahaca",
+      price: "12.500",
+    },
+    {
+      name: "Sublime Roll",
+      description: "Langostinos, Palta, Queso Philadelphia coronados con batatitas fritas con almíbar de jengibre",
+      price: "12.500",
+    },
+    {
+      name: "Mango Roll",
+      description:
+        "Langostinos, Palta, Queso Philadelphia, envueltos en Mango coronados con queso y garrapiñas de quínoa",
+      price: "12.500",
+    },
+    {
+      name: "Skin Roll",
+      description: "Pescado Crocante, Queso Philadelphia, Mango envuelto en Salmón",
+      price: "12.500",
+    },
+    {
+      name: "Roll B.A",
+      description: "Langostinos, Palta y Queso Philadelphia Envuelto en Salmón fresco",
+      price: "12.500",
+    },
+    { name: "Tamagos", description: "Salmon Ahumado y Palta", price: "12.500" },
+    { name: "Tamago Crazy", description: "Langostinos, Palta y Queso", price: "12.500" },
     { name: "Crazy Ahumado", description: "Langostinos, Palta y Queso envuelto en Salmón ahumado", price: "12.500" },
     { name: "Geishas", description: "Cono de Salmon relleno de Queso Philadelphia y Palta", price: "13.500" },
     {
@@ -65,48 +107,118 @@ const initialMenuData: MenuData = {
       description: "Kanikama, Palta, Queso, Coronado con Remolacha pai en almíbar de Jengibre y Salsa Togarashi",
       price: "12.500",
     },
-    // Agrega más elementos de Rolls Gourmet y Rolls Especiales aquí
+    { name: "Vegetariano Caprese", description: "Coronado con Philadelphia Cherry y Albahaca", price: "12.000" },
+    { name: "Vegetariano Sublime", description: "Coronado con Batata pai y almíbar de Jengibre", price: "12.000" },
+    {
+      name: "Vegetariano Shitake",
+      description: "Coronado con hongos Shitake, Philadelphia y Caviar Vegetariano",
+      price: "12.000",
+    },
+    {
+      name: "Don Osvaldo Roll",
+      description:
+        "Arroz negro con tinta de Calamar, relleno de Mango, Langostinos y Queso envuelto en Salmon Ahumado, coronado con Quinoa",
+      price: "12.500",
+    },
+    { name: "Roll Smoke", description: "Tortilla de huevo, Queso Finlandia y Kanikama", price: "12.500" },
   ],
   tablas: [
     { name: "Tabla 1 (12 piezas Clásicas)", price: "30.000" },
     { name: "Tabla 2 (20 piezas Clásicas)", price: "50.000" },
+    { name: "Tabla 3 (28 piezas Gourmet)", price: "85.000" },
+    { name: "Tabla 4 (Barco con 80 piezas) promo", price: "110.000" },
+    { name: "Tabla 5 (20 piezas sin pescado)", price: "50.000" },
+    { name: "Tabla Vegge (20 piezas)", price: "50.000" },
   ],
   carnes: [
     { name: "Bondiola con Papas al Horno", price: "23.000" },
     { name: "Muslo relleno de Espinacas y Queso Brie con mil hojas de Papa y Salsa de Eneldo", price: "19.000" },
+    { name: "Lomo a la Pimienta con Papas Rusticas y Pesto", price: "23.000" },
   ],
   pescados: [
     { name: "Salmone in Crosta di Sésamo con Souflee de Vegetales y Salsa Cremosa Asiática", price: "25.000" },
+    { name: "Lenguado con Papines", price: "20.000" },
+    { name: "Lenguado Capresse", price: "20.000" },
+    { name: "Cazuela de frutos del Mar c/ Arroz azafranado", price: "25.000" },
   ],
   pastas: [
     { name: "Raviolis di Vittello con Salsa Scroffa", price: "18.000" },
     { name: "Sorrentinos de Salmon con Salsa Cremosa de Cúrcuma y Ciboulette", price: "18.000" },
+    { name: "Sorrentinos de Jamón y Queso con Salsa de Hongos", price: "16.000" },
+    { name: "Ñoquis", price: "15.000" },
   ],
   pizzas: [
     { name: "Pizza Individual", price: "5.000" },
     { name: "Pizza Grande", price: "11.000" },
+    { name: "Pizza Napolitana", price: "11.000" },
+    { name: "Pizza Muzza", price: "11.000" },
+    { name: "Pizza Fugazzeta", price: "11.000" },
+    { name: "Pizza con Palmitos y Morrones", price: "13.000" },
+    {
+      name: "Pizza Don Osvaldo",
+      description: "Masa, Salsa, Jamón, Queso, Palmitos, Morrones Asados, Aceitunas Negras, y Salsa Golf",
+      price: "11.000",
+    },
   ],
   minutas: [
     { name: "Milanesa Napolitana Para 1 c/Fritas", price: "10.000" },
     { name: "Milanesa Napolitana Para 2 c/Fritas", price: "19.000" },
+    { name: "Milanesa Crazy C/Fritas", price: "13.000" },
+    { name: "Milanesa Fugazzeta c/Fritas", price: "15.000" },
+    { name: "Pollo al Champignon c/Papas Españolas", price: "16.000" },
+    { name: "Pollo al Verdeo c/Papas españolas", price: "16.000" },
+    { name: "Hamburguesa Doc", description: "Lechuga, tomate, jamón, queso y huevo c/papas fritas", price: "8.000" },
+    {
+      name: "Hamburguesa Doc Especial",
+      description: "Lechuga, cebolla caramelizada, panceta, salsa c/queso cheddar y papas",
+      price: "8.000",
+    },
+    { name: "Papas con Salsa de Albahaca", price: "8.000" },
   ],
   wok: [
     { name: "Wok de Lomo", price: "18.000" },
     { name: "Wok de Pollo", price: "18.000" },
+    { name: "Wok de Pollo y Lomo", price: "20.000" },
+    { name: "Arroz Chaufa", price: "18.000" },
+    { name: "Budín de Puerro", price: "18.000" },
   ],
   postres: [
     { name: "Tiramisú", price: "7.000" },
     { name: "Panna Cotta Casera", price: "7.500" },
+    { name: "Flan Mixto", price: "7.000" },
   ],
   bebidas: [
     { name: "Gaseosa 500cc", price: "2.500" },
     { name: "Gaseosa 1 L", price: "3.000" },
+    { name: "Gaseosa 1 ½ L", price: "4.500" },
+    { name: "Agua Saborizada 500cc", price: "3.000" },
+    { name: "Agua Mineral 500cc", price: "3.000" },
+    { name: "Agua con Gas 500cc", price: "3.000" },
+    { name: "Cerveza 1 L", price: "5.500" },
+    { name: "Cerveza 710cc", price: "4.500" },
+    { name: "Cerveza 473cc", price: "4.000" },
+    { name: "Cerveza Corona 710cc", price: "5.500" },
   ],
   tragos: [
+    { name: "Tragos", price: "4.500" },
     { name: "Mojito Jäger", description: "Jägermeister, lima, azúcar, menta, hielo", price: "10.500" },
+    { name: "Fernet Chico", price: "5.500" },
+    { name: "Campari", price: "4.500" },
+    { name: "Vermouth", price: "3.500" },
+    { name: "Jägermeister c/ Speed", price: "9.000" },
+    { name: "Speed", price: "3.500" },
+    { name: "Chandon 187 c/ Speed", price: "16.000" },
+    { name: "Jägermeister Shot Helado o c/Hielo", price: "6.000" },
+    { name: "Jäger Orange", description: "Jägermeister con Jugo de Naranja", price: "9.000" },
+    { name: "Jägerinha", description: "Jägermeister, lima, pomelo, azúcar, hielo frisado", price: "9.000" },
+    { name: "Jäger Pomelo", description: "Jägermeister con jugo de Pomelo", price: "9.000" },
+    { name: "Jäger Soft", description: "Jägermeister, lima, azúcar, jengibre, pera, ron de coco", price: "10.500" },
+    { name: "Caipi Jäger", description: "Jägermeister, lima, azúcar, hielo", price: "9.500" },
   ],
   extras: [
     { name: "Salsas (Maracuyá, Teriyaki, Mango)", price: "1.500" },
+    { name: "Palitos Extras", price: "200" },
+    { name: "Servicio de Mesa", price: "1.500" },
   ],
 }
 
@@ -125,117 +237,75 @@ const MenuContext = createContext<MenuContextType | undefined>(undefined)
 
 // Proveedor del contexto
 export function MenuProvider({ children }: { children: React.ReactNode }) {
-  const [menuData, setMenuData] = useState<MenuData>(initialMenuData)
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [menuData, setMenuData] = useState<MenuData>(initialMenuData);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Cargar datos del localStorage al iniciar
   useEffect(() => {
-    const savedData = localStorage.getItem("menuData")
+    const savedData = localStorage.getItem("menuData");
     if (savedData) {
       try {
-        const parsedData = JSON.parse(savedData)
+        const parsedData = JSON.parse(savedData);
         setMenuData({
           ...initialMenuData,
           ...parsedData,
-          platosRecomendados: parsedData.platosRecomendados || [], // Asegúrate de que sea un arreglo
-        })
+        });
       } catch (error) {
-        console.error("Error al cargar datos del menú:", error)
+        console.error("Error al cargar datos del menú:", error);
       }
     }
-    setIsLoaded(true)
-  }, [])
+    setIsLoaded(true);
+  }, []);
 
-  // Actualizar un elemento del menú
-  const updateMenuItem = (category: keyof MenuData, index: number, newPrice: string) => {
-    setMenuData((prevData) => {
-      const newData = { ...prevData }
-      const items = [...newData[category]]
-      items[index] = { ...items[index], price: newPrice }
-      newData[category] = items
-      return newData
-    })
-  }
-
-  // Guardar cambios en localStorage
-  const saveChanges = (category: keyof MenuData) => {
-    localStorage.setItem("menuData", JSON.stringify(menuData))
-  }
-
-  // Añadir un plato a recomendados
-  const addToRecommended = (item: MenuItem, sourceCategory: keyof MenuData) => {
-    setMenuData((prevData) => {
-      // Verificar si el plato ya está en recomendados
-      const isAlreadyRecommended = prevData.platosRecomendados.some(
-        (recommendedItem) => recommendedItem.name === item.name && recommendedItem.category === sourceCategory,
-      )
-
-      if (isAlreadyRecommended) {
-        return prevData
-      }
-
-      // Añadir el plato a recomendados con referencia a su categoría original
-      const newRecommended = [...prevData.platosRecomendados, { ...item, category: sourceCategory }]
-
-      return {
-        ...prevData,
-        platosRecomendados: newRecommended,
-      }
-    })
-  }
-
-  // Eliminar un plato de recomendados
-  const removeFromRecommended = (index: number) => {
-    setMenuData((prevData) => {
-      const newRecommended = [...prevData.platosRecomendados]
-      newRecommended.splice(index, 1)
-      return {
-        ...prevData,
-        platosRecomendados: newRecommended,
-      }
-    })
-  }
-
-  // Obtener todos los platos para seleccionar en el panel de administración
-  const getAllItems = () => {
-    const allItems: { item: MenuItem; category: string }[] = []
-
-    Object.entries(menuData).forEach(([category, items]) => {
-      if (category !== "platosRecomendados") {
-        items.forEach((item: any) => {
-          allItems.push({
-            item,
-            category,
-          })
-        })
-      }
-    })
-
-    return allItems
-  }
-
-  // Guardar automáticamente cuando cambian los datos y ya se ha cargado
+  // Guardar automáticamente en localStorage cuando cambian los datos
   useEffect(() => {
-    if (isLoaded) {
-      localStorage.setItem("menuData", JSON.stringify(menuData))
+    if (isLoaded && menuData !== initialMenuData) {
+      localStorage.setItem("menuData", JSON.stringify(menuData));
     }
-  }, [menuData, isLoaded])
+  }, [menuData, isLoaded]);
 
   return (
     <MenuContext.Provider
       value={{
         menuData,
         setMenuData,
-        updateMenuItem,
-        saveChanges,
-        addToRecommended,
-        removeFromRecommended,
-        getAllItems,
+        updateMenuItem: (category, index, newPrice) => {
+          setMenuData((prevData) => {
+            const updatedCategory = [...prevData[category]];
+            updatedCategory[index] = { ...updatedCategory[index], price: newPrice };
+            return { ...prevData, [category]: updatedCategory };
+          });
+        },
+        saveChanges: (category) => {
+          const savedData = JSON.parse(localStorage.getItem("menuData") || "{}");
+          localStorage.setItem(
+            "menuData",
+            JSON.stringify({ ...savedData, [category]: menuData[category] })
+          );
+        },
+        addToRecommended: (item, sourceCategory) => {
+          setMenuData((prevData) => ({
+            ...prevData,
+            platosRecomendados: [...prevData.platosRecomendados, { ...item, category: sourceCategory }],
+          }));
+        },
+        removeFromRecommended: (index) => {
+          setMenuData((prevData) => {
+            const updatedRecommended = [...prevData.platosRecomendados];
+            updatedRecommended.splice(index, 1);
+            return { ...prevData, platosRecomendados: updatedRecommended };
+          });
+        },
+        getAllItems: () => {
+          return Object.entries(menuData).flatMap(([category, items]) =>
+            items.map((item: any) => ({ item, category }))
+          );
+        },
       }}
     >
       {children}
     </MenuContext.Provider>
-  )
+  );
 }
 
 // Hook personalizado para usar el contexto

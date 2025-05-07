@@ -6,7 +6,6 @@ import { MakiSushi } from "@/components/menu/maki-sushi"
 import { Nigiris } from "@/components/menu/nigiris"
 import { Sashimi } from "@/components/menu/sashimi"
 import { RollsEspeciales } from "@/components/menu/rolls-especiales"
-import { RollsGourmet } from "@/components/menu/rolls-gourmet"
 import { Tablas } from "@/components/menu/tablas"
 import { Carnes } from "@/components/menu/carnes"
 import { Pescados } from "@/components/menu/pescados"
@@ -40,7 +39,6 @@ export function MenuContent() {
       {activeCategory === "nigiris" && <Nigiris />}
       {activeCategory === "sashimi" && <Sashimi />}
       {activeCategory === "rolls-especiales" && <RollsEspeciales />}
-      {activeCategory === "rolls-gourmet" && <RollsGourmet />}
       {activeCategory === "tablas" && <Tablas />}
       {activeCategory === "carnes" && <Carnes />}
       {activeCategory === "pescados" && <Pescados />}

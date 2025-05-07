@@ -26,7 +26,6 @@ const categories = [
   { id: "nigiris", name: "Nigiris", icon: <Fish className="w-4 h-4 mr-1" /> },
   { id: "sashimi", name: "Sashimi", icon: <Fish className="w-4 h-4 mr-1" /> },
   { id: "rolls-especiales", name: "Rolls Especiales", icon: <Shell className="w-4 h-4 mr-1" /> },
-  { id: "rolls-gourmet", name: "Rolls Gourmet", icon: <Shell className="w-4 h-4 mr-1" /> },
   { id: "tablas", name: "Tablas", icon: <Utensils className="w-4 h-4 mr-1" /> },
   { id: "carnes", name: "Carnes", icon: <Drumstick className="w-4 h-4 mr-1" /> },
   { id: "pescados", name: "Pescados", icon: <Fish className="w-4 h-4 mr-1" /> },

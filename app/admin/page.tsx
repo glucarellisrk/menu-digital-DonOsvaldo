@@ -290,43 +290,54 @@ export default function AdminPage() {
                     <DialogHeader>
                       <DialogTitle>Añadir Plato Recomendado</DialogTitle>
                       <DialogDescription>
-                        Puede seleccionar un plato existente o agregar uno manualmente.
+                       Agregar uno manualmente.
                       </DialogDescription>
                     </DialogHeader>
 
                     <div className="grid gap-4 py-4">
                       {/* Agregar plato manualmente */}
                       <div className="grid gap-2">
-                        <Label htmlFor="manual-name">Nombre del Plato</Label>
-                        <Input
-                          id="manual-name"
-                          placeholder="Ejemplo: Milanesa Napolitana"
-                          value={manualDish.name}
-                          onChange={(e) => setManualDish({ ...manualDish, name: e.target.value })}
-                        />
+                      <Label htmlFor="manual-name">Nombre del Plato</Label>
+                      <Input
+                        id="manual-name"
+                        placeholder="Ejemplo: Milanesa Napolitana"
+                        value={manualDish.name}
+                        onChange={(e) => setManualDish({ ...manualDish, name: e.target.value })}
+                      />
+                      {!manualDish.name && (
+                        <p className="text-red-500 text-sm">El nombre del plato es obligatorio.</p>
+                      )}
                       </div>
                       <div className="grid gap-2">
-                        <Label htmlFor="manual-description">Descripción (opcional)</Label>
-                        <Input
-                          id="manual-description"
-                          placeholder="Ejemplo: Con papas fritas"
-                          value={manualDish.description}
-                          onChange={(e) => setManualDish({ ...manualDish, description: e.target.value })}
-                        />
+                      <Label htmlFor="manual-description">Descripción (opcional)</Label>
+                      <Input
+                        id="manual-description"
+                        placeholder="Ejemplo: Con papas fritas"
+                        value={manualDish.description}
+                        onChange={(e) => setManualDish({ ...manualDish, description: e.target.value })}
+                      />
                       </div>
                       <div className="grid gap-2">
                         <Label htmlFor="manual-price">Precio</Label>
                         <Input
-                          id="manual-price"
-                          placeholder="Ejemplo: 10.000"
-                          value={manualDish.price}
-                          onChange={(e) => setManualDish({ ...manualDish, price: e.target.value })}
+                        id="manual-price"
+                        placeholder="Ejemplo: 10000"
+                        value={manualDish.price}
+                        onChange={(e) => {
+                          const numericValue = e.target.value.replace(/[^0-9]/g, "");
+                          setManualDish({ ...manualDish, price: numericValue });
+                        }}
+                        inputMode="numeric"
                         />
+                        {!manualDish.price && (
+                        <p className="text-red-500 text-sm">El precio del plato es obligatorio.</p>
+                        )}
                       </div>
+                    
 
                       {/* Seleccionar plato existente */}
-                      <div className="grid gap-2">
-                        <Label htmlFor="category">Categoría</Label>
+                      {/* <div className="grid gap-2"> */}
+                      {/*   <Label htmlFor="category">Categoría</Label>
                         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                           <SelectTrigger>
                             <SelectValue placeholder="Seleccione una categoría" />
@@ -341,8 +352,8 @@ export default function AdminPage() {
                                 ),
                             )}
                           </SelectContent>
-                        </Select>
-                      </div>
+                        </Select> */}
+                      {/* </div> */}
 
                       {selectedCategory && (
                         <div className="grid gap-2">
