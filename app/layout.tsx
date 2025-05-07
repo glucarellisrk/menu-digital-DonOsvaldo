@@ -14,6 +14,8 @@ export default function RootLayout({
         <meta name="description" content="Menú digital para Don Osvaldo Sushi & Cocina Internacional" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta name="theme-color" content="#eb7919" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#eb7919" />
       </head>
       <body>
         <MenuProvider>{children}</MenuProvider>
