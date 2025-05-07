@@ -1,0 +1,233 @@
+{
+  "platosRecomendados": [],
+  "rollsClasicos": [
+    {
+      "name": "California",
+      "description": "Kanikama, Palta, Queso Philadelphia",
+      "price": "12.000"
+    },
+    {
+      "name": "New York",
+      "description": "Salmón y Palta",
+      "price": "11.000"
+    },
+    {
+      "name": "New York Philadelphia",
+      "description": "Salmón, Palta y Queso Philadelphia",
+      "price": "11.000"
+    },
+    {
+      "name": "Philadelphia",
+      "description": "Salmón y Queso Philadelphia",
+      "price": "11.000"
+    },
+    {
+      "name": "Vegetariano",
+      "description": "Repollo Colorado, Verdeo, Palta y Queso Philadelphia",
+      "price": "9.500"
+    },
+    {
+      "name": "Tuna",
+      "description": "Atún, Palta y Queso Philadelphia",
+      "price": "10.000"
+    },
+    {
+      "name": "Sake",
+      "description": "Salmon Cocido, Verdeo y Queso Philadelphia",
+      "price": "11.000"
+    }
+  ],
+  "makiSushi": [
+    {
+      "name": "Maki Tuna",
+      "price": "10.000"
+    },
+    {
+      "name": "Maki Salmon Phila",
+      "price": "11.000"
+    },
+    {
+      "name": "Maki Salmon",
+      "price": "11.000"
+    },
+    {
+      "name": "Maki Pejerrey",
+      "price": "11.000"
+    },
+    {
+      "name": "Maki Sake",
+      "price": "11.000"
+    },
+    {
+      "name": "Maki Kanikama",
+      "price": "10.000"
+    }
+  ],
+  "nigiris": [
+    {
+      "name": "Salmon",
+      "price": "11.000"
+    },
+    {
+      "name": "Salmon Ahumado",
+      "price": "11.000"
+    }
+  ],
+  "sashimi": [
+    {
+      "name": "Salmon",
+      "price": "14.500"
+    },
+    {
+      "name": "Salmon Ahumado",
+      "price": "15.000"
+    },
+    {
+      "name": "Langostinos",
+      "price": "14.000"
+    }
+  ],
+  "rollsEspeciales": [
+    {
+      "name": "Ebi Fried",
+      "description": "Langostinos, Palta y Queso Philadelphia, Rebozados y Fritos",
+      "price": "13.000"
+    },
+    {
+      "name": "Won Ton Roll",
+      "description": "Langostinos, Palta y Queso Philadelphia, Envuelto en Masa",
+      "price": "13.000"
+    },
+    {
+      "name": "Roll Shitake",
+      "description": "Langostinos, Palta, Queso Philadelphia, coronados con Hongos Shitake y Caviar rojo",
+      "price": "12.500"
+    },
+    {
+      "name": "Ebi Capresse",
+      "description": "Langostinos, Pepino, Queso Philadelphia coronados con Queso, Tomates Cherry y Albahaca",
+      "price": "12.500"
+    },
+    {
+      "name": "Sublime Roll",
+      "description": "Langostinos, Palta, Queso Philadelphia coronados con batatitas fritas con almíbar de jengibre",
+      "price": "12.500"
+    },
+    {
+      "name": "Mango Roll",
+      "description": "Langostinos, Palta, Queso Philadelphia, envueltos en Mango coronados con queso y garrapiñas de quínoa",
+      "price": "12.500"
+    }
+  ],
+  "tablas": [
+    {
+      "name": "Tabla 1 (12 piezas Clásicas)",
+      "price": "30.000"
+    },
+    {
+      "name": "Tabla 2 (20 piezas Clásicas)",
+      "price": "50.000"
+    },
+    {
+      "name": "Tabla 3 (28 piezas Gourmet)",
+      "price": "85.000"
+    }
+  ],
+  "carnes": [
+    {
+      "name": "Bondiola con Papas al Horno",
+      "price": "23.000"
+    },
+    {
+      "name": "Muslo relleno de Espinacas y Queso Brie con mil hojas de Papa y Salsa de Eneldo",
+      "price": "19.000"
+    }
+  ],
+  "pescados": [
+    {
+      "name": "Salmone in Crosta di Sésamo con Souflee de Vegetales y Salsa Cremosa Asiática",
+      "price": "25.000"
+    },
+    {
+      "name": "Lenguado con Papines",
+      "price": "20.000"
+    }
+  ],
+  "pastas": [
+    {
+      "name": "Raviolis di Vittello con Salsa Scroffa",
+      "price": "18.000"
+    },
+    {
+      "name": "Sorrentinos de Salmon con Salsa Cremosa de Cúrcuma y Ciboulette",
+      "price": "18.000"
+    }
+  ],
+  "pizzas": [
+    {
+      "name": "Pizza Individual",
+      "price": "5.000"
+    },
+    {
+      "name": "Pizza Grande",
+      "price": "11.000"
+    }
+  ],
+  "minutas": [
+    {
+      "name": "Milanesa Napolitana Para 1 c/Fritas",
+      "price": "10.000"
+    },
+    {
+      "name": "Milanesa Napolitana Para 2 c/Fritas",
+      "price": "19.000"
+    }
+  ],
+  "wok": [
+    {
+      "name": "Wok de Lomo",
+      "price": "18.000"
+    },
+    {
+      "name": "Wok de Pollo",
+      "price": "18.000"
+    }
+  ],
+  "postres": [
+    {
+      "name": "Tiramisú",
+      "price": "7.000"
+    },
+    {
+      "name": "Panna Cotta Casera",
+      "price": "7.500"
+    }
+  ],
+  "bebidas": [
+    {
+      "name": "Gaseosa 500cc",
+      "price": "2.500"
+    },
+    {
+      "name": "Gaseosa 1 L",
+      "price": "3.000"
+    }
+  ],
+  "tragos": [
+    {
+      "name": "Mojito Jäger",
+      "description": "Jägermeister, lima, azúcar, menta, hielo",
+      "price": "10.500"
+    }
+  ],
+  "extras": [
+    {
+      "name": "Salsas (Maracuyá, Teriyaki, Mango)",
+      "price": "1.500"
+    },
+    {
+      "name": "Palitos Extras",
+      "price": "200"
+    }
+  ]
+}

@@ -96,12 +96,12 @@ export default function AdminPage() {
   const handleSaveChanges = (category: keyof typeof menuData) => {
     if (editedPrices[category]) {
       Object.entries(editedPrices[category]).forEach(([indexStr, price]) => {
-        const index = Number.parseInt(indexStr)
-        updateMenuItem(category, index, price)
-      })
+        const index = Number.parseInt(indexStr);
+        updateMenuItem(category, index, price);
+      });
 
-      // Guardar todos los cambios en localStorage
-      saveChanges(category)
+      // Guardar los cambios en el servidor
+      saveChanges();
 
       // Mostrar notificación de éxito
       toast({
@@ -112,49 +112,47 @@ export default function AdminPage() {
             <Check className="h-4 w-4" />
           </ToastAction>
         ),
-      })
+      });
 
       // Limpiar los precios editados para esta categoría
       setEditedPrices((prev) => {
-        const newState = { ...prev }
-        delete newState[category]
-        return newState
-      })
+        const newState = { ...prev };
+        delete newState[category];
+        return newState;
+      });
     }
-  }
+  };
 
   // Función para añadir un plato a recomendados
   const handleAddToRecommended = () => {
     if (manualDish.name) {
-      // Agregar plato manualmente a "Platos Recomendados"
       setMenuData((prevData) => ({
         ...prevData,
         platosRecomendados: Array.isArray(prevData.platosRecomendados)
           ? [...prevData.platosRecomendados, { name: manualDish.name, description: manualDish.description, price: manualDish.price }]
           : [{ name: manualDish.name, description: manualDish.description, price: manualDish.price }],
-      }))
-      alert(`Plato "${manualDish.name}" añadido a los recomendados.`)
-      setManualDish({ name: "", description: "", price: "" }) // Limpiar el formulario
+      }));
+      alert(`Plato "${manualDish.name}" añadido a los recomendados.`);
+      setManualDish({ name: "", description: "", price: "" });
     } else if (selectedItem && selectedCategory) {
-      // Agregar plato seleccionado de otra categoría
-      const [categoryId, itemIndex] = selectedItem.split("-")
-      const category = categoryId as keyof typeof menuData
-      const index = Number.parseInt(itemIndex)
+      const [categoryId, itemIndex] = selectedItem.split("-");
+      const category = categoryId as keyof typeof menuData;
+      const index = Number.parseInt(itemIndex);
 
       if (menuData[category] && menuData[category][index]) {
-        const item = menuData[category][index]
+        const item = menuData[category][index];
         setMenuData((prevData) => ({
           ...prevData,
           platosRecomendados: Array.isArray(prevData.platosRecomendados)
             ? [...prevData.platosRecomendados, item]
             : [item],
-        }))
-        alert(`Plato "${item.name}" añadido a los recomendados.`)
-        setSelectedItem("")
-        setSelectedCategory("")
+        }));
+        alert(`Plato "${item.name}" añadido a los recomendados.`);
+        setSelectedItem("");
+        setSelectedCategory("");
       }
     }
-  }
+  };
 
   // Función para eliminar un plato de recomendados
   const handleRemoveFromRecommended = (index: number) => {
