@@ -56,7 +56,7 @@ interface MenuContextType {
   menuData: MenuData;
   setMenuData: React.Dispatch<React.SetStateAction<MenuData>>;
   updateMenuItem: (category: keyof MenuData, index: number, newPrice: string) => void;
-  saveChanges: () => void;
+  saveChanges: (dataToSave?: MenuData) => void;
   addToRecommended: (item: MenuItem, sourceCategory: keyof MenuData) => void;
   removeFromRecommended: (index: number) => void;
   getAllItems: () => { item: MenuItem; category: string }[];
@@ -69,14 +69,25 @@ export function MenuProvider({ children }: { children: React.ReactNode }) {
   const [menuData, setMenuData] = useState<MenuData>(initialMenuData);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Cargar datos del menú desde un endpoint remoto
+  // 1. Define saveChanges primero
+  const saveChanges = async (dataToSave = menuData) => {
+    try {
+      await fetch("/api/menu", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(dataToSave),
+      });
+    } catch (error) {
+      console.error("Error al guardar los cambios:", error);
+    }
+  };
+
+  // 2. Luego los useEffect
   useEffect(() => {
     const loadMenuData = async () => {
       try {
-        // Obtener los datos del menú desde el servidor
         const response = await fetch("/api/menu");
         if (!response.ok) throw new Error("Error al obtener menú desde servidor");
-
         const remoteData = await response.json();
         setMenuData({
           ...initialMenuData,
@@ -87,17 +98,22 @@ export function MenuProvider({ children }: { children: React.ReactNode }) {
       }
       setIsLoaded(true);
     };
-
     loadMenuData();
   }, []);
 
-  // Guardar automáticamente en localStorage cuando cambian los datos
   useEffect(() => {
     if (isLoaded) {
       localStorage.setItem("menuData", JSON.stringify(menuData));
     }
   }, [menuData, isLoaded]);
 
+  useEffect(() => {
+    if (isLoaded) {
+      saveChanges(menuData);
+    }
+  }, [menuData]);
+
+  // 3. El resto igual
   return (
     <MenuContext.Provider
       value={{
@@ -110,25 +126,7 @@ export function MenuProvider({ children }: { children: React.ReactNode }) {
             return { ...prevData, [category]: updatedCategory };
           });
         },
-        saveChanges: async () => {
-          try {
-            const response = await fetch("/api/menu", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(menuData), // Enviar todo el menú actualizado
-            });
-        
-            if (!response.ok) {
-              throw new Error("Error al guardar los cambios en el servidor");
-            }
-        
-            console.log("Menú actualizado correctamente en el servidor");
-          } catch (error) {
-            console.error("Error al guardar los cambios:", error);
-          }
-        },
+        saveChanges,
         addToRecommended: (item, sourceCategory) => {
           setMenuData((prevData) => ({
             ...prevData,

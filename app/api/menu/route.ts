@@ -21,9 +21,8 @@ export async function POST(request: Request) {
     console.log("Ruta del archivo:", filePath);
 
     const newMenuData = await request.json();
-    console.log("Datos recibidos:", newMenuData);
+    console.log("Datos recibidos en el servidor:", newMenuData);
 
-    // Escribir los nuevos datos en el archivo menu.json
     await fs.writeFile(filePath, JSON.stringify(newMenuData, null, 2), "utf-8");
     console.log("Archivo actualizado correctamente");
 

@@ -95,26 +95,24 @@ export default function AdminPage() {
   // Función para guardar los cambios
   const handleSaveChanges = (category: keyof typeof menuData) => {
     if (editedPrices[category]) {
+      // 1. Crea una copia local del menú actualizado
+      const updatedMenu = { ...menuData };
       Object.entries(editedPrices[category]).forEach(([indexStr, price]) => {
         const index = Number.parseInt(indexStr);
-        updateMenuItem(category, index, price);
+        updatedMenu[category][index] = { ...updatedMenu[category][index], price };
       });
 
-      // Guardar los cambios en el servidor
-      saveChanges();
+      // 2. Actualiza el estado y GUARDA después de que el estado se actualizó
+      setMenuData(updatedMenu);
+      setTimeout(() => {
+        saveChanges();
+      }, 100); // Espera breve para asegurar que el estado se actualizó
 
-      // Mostrar notificación de éxito
       toast({
         title: "Cambios guardados",
         description: "Los precios han sido actualizados correctamente.",
-        action: (
-          <ToastAction altText="Ok">
-            <Check className="h-4 w-4" />
-          </ToastAction>
-        ),
       });
 
-      // Limpiar los precios editados para esta categoría
       setEditedPrices((prev) => {
         const newState = { ...prev };
         delete newState[category];
@@ -123,47 +121,27 @@ export default function AdminPage() {
     }
   };
 
-  // Función para añadir un plato a recomendados
+  // Para agregar recomendado
   const handleAddToRecommended = () => {
     if (manualDish.name) {
       setMenuData((prevData) => ({
         ...prevData,
-        platosRecomendados: Array.isArray(prevData.platosRecomendados)
-          ? [...prevData.platosRecomendados, { name: manualDish.name, description: manualDish.description, price: manualDish.price }]
-          : [{ name: manualDish.name, description: manualDish.description, price: manualDish.price }],
+        platosRecomendados: [
+          ...prevData.platosRecomendados,
+          { name: manualDish.name, description: manualDish.description, price: manualDish.price }
+        ],
       }));
-      alert(`Plato "${manualDish.name}" añadido a los recomendados.`);
       setManualDish({ name: "", description: "", price: "" });
-    } else if (selectedItem && selectedCategory) {
-      const [categoryId, itemIndex] = selectedItem.split("-");
-      const category = categoryId as keyof typeof menuData;
-      const index = Number.parseInt(itemIndex);
-
-      if (menuData[category] && menuData[category][index]) {
-        const item = menuData[category][index];
-        setMenuData((prevData) => ({
-          ...prevData,
-          platosRecomendados: Array.isArray(prevData.platosRecomendados)
-            ? [...prevData.platosRecomendados, item]
-            : [item],
-        }));
-        alert(`Plato "${item.name}" añadido a los recomendados.`);
-        setSelectedItem("");
-        setSelectedCategory("");
-      }
     }
   };
 
-  // Función para eliminar un plato de recomendados
+  // Para eliminar recomendado
   const handleRemoveFromRecommended = (index: number) => {
-    const itemName = menuData.platosRecomendados[index].name
-    removeFromRecommended(index)
-
-    toast({
-      title: "Plato eliminado de recomendados",
-      description: `${itemName} ha sido eliminado de los platos recomendados.`,
-    })
-  }
+    setMenuData((prevData) => ({
+      ...prevData,
+      platosRecomendados: prevData.platosRecomendados.filter((_, i) => i !== index),
+    }));
+  };
 
   // Controlar la navegación con flechas
   useEffect(() => {
@@ -415,7 +393,7 @@ export default function AdminPage() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          onClick={() => handleRemoveDish("platosRecomendados", index)}
+                          onClick={() => handleRemoveFromRecommended(index)}
                           className="text-red-500 hover:text-red-700 hover:bg-red-100"
                         >
                           <X className="h-4 w-4" />
