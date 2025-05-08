@@ -18,10 +18,12 @@ import { Bebidas } from "@/components/menu/bebidas"
 import { Tragos } from "@/components/menu/tragos"
 import { PlatosRecomendados } from "@/components/menu/platos-recomendados"
 import { useEffect, useState } from "react"
+import { useMenuData } from "@/hooks/use-menu-data";
 
 export function MenuContent() {
   const { activeCategory } = useMenuStore()
   const [mounted, setMounted] = useState(false)
+  const { menuData } = useMenuData();
 
   useEffect(() => {
     setMounted(true)

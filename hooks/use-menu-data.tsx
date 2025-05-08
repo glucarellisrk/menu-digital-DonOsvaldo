@@ -1,6 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
+import { ref, onValue, set } from "firebase/database";
+import { db } from "@/src/firebase"; // Ajusta la ruta según la ubicación real del archivo firebase.ts
 
 // Define la estructura de los datos del menú
 interface MenuItem {
@@ -69,51 +71,25 @@ export function MenuProvider({ children }: { children: React.ReactNode }) {
   const [menuData, setMenuData] = useState<MenuData>(initialMenuData);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // 1. Define saveChanges primero
-  const saveChanges = async (dataToSave = menuData) => {
-    try {
-      await fetch("/api/menu", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dataToSave),
-      });
-    } catch (error) {
-      console.error("Error al guardar los cambios:", error);
-    }
-  };
-
-  // 2. Luego los useEffect
+  // Leer menú en tiempo real desde Firebase
   useEffect(() => {
-    const loadMenuData = async () => {
-      try {
-        const response = await fetch("/api/menu");
-        if (!response.ok) throw new Error("Error al obtener menú desde servidor");
-        const remoteData = await response.json();
-        setMenuData({
-          ...initialMenuData,
-          ...remoteData,
-        });
-      } catch (error) {
-        console.error("Error al cargar datos del menú:", error);
-      }
+    const menuRef = ref(db, "menu");
+    const unsubscribe = onValue(menuRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) setMenuData({ ...initialMenuData, ...data });
       setIsLoaded(true);
-    };
-    loadMenuData();
+    });
+    return () => unsubscribe();
   }, []);
 
+  // Guardar menú en Firebase cada vez que cambia
   useEffect(() => {
     if (isLoaded) {
-      localStorage.setItem("menuData", JSON.stringify(menuData));
+      set(ref(db, "menu"), menuData);
     }
-  }, [menuData, isLoaded]);
-
-  useEffect(() => {
-    if (isLoaded) {
-      saveChanges(menuData);
-    }
+    // eslint-disable-next-line
   }, [menuData]);
 
-  // 3. El resto igual
   return (
     <MenuContext.Provider
       value={{
@@ -126,7 +102,9 @@ export function MenuProvider({ children }: { children: React.ReactNode }) {
             return { ...prevData, [category]: updatedCategory };
           });
         },
-        saveChanges,
+        saveChanges: async () => {
+          await set(ref(db, "menu"), menuData);
+        },
         addToRecommended: (item, sourceCategory) => {
           setMenuData((prevData) => ({
             ...prevData,
@@ -160,3 +138,5 @@ export function useMenuData() {
   }
   return context;
 }
+
+
