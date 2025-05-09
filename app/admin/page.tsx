@@ -312,8 +312,8 @@ export default function AdminPage() {
                     
 
                       {/* Seleccionar plato existente */}
-                      {/* <div className="grid gap-2"> */}
-                      {/*   <Label htmlFor="category">Categoría</Label>
+                      <div className="grid gap-2">
+                        <Label htmlFor="category">Categoría</Label>
                         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                           <SelectTrigger>
                             <SelectValue placeholder="Seleccione una categoría" />
@@ -328,8 +328,8 @@ export default function AdminPage() {
                                 ),
                             )}
                           </SelectContent>
-                        </Select> */}
-                      {/* </div> */}
+                        </Select>
+                      </div>
 
                       {selectedCategory && (
                         <div className="grid gap-2">
