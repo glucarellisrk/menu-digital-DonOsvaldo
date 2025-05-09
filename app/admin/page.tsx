@@ -316,7 +316,7 @@ export default function AdminPage() {
                         <Label htmlFor="category">Categoría</Label>
                         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                           <SelectTrigger>
-                            <SelectValue placeholder="Seleccione una categoría" />
+                            <SelectValue placeholder="Seleccione una categoría / Agregar Recomendado" />
                           </SelectTrigger>
                           <SelectContent>
                             {categories.map(
